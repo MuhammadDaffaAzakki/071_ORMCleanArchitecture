@@ -1,11 +1,11 @@
-const db = require('../modules');
+const db = require('../models');
 
 async function getAllKomik(req, res) {
     try {
         const komiks = await db.Komik.findAll();
         res.status(200).json(komiks);
     } catch (error) {
-        console.error('Error retrieving komik:', error.massage);
+        console.error('Error retrieving komik:', error.message);
         res.status(500).json({ error: 'An error occurred while retrieving komik.' });
     }
 }
@@ -19,7 +19,7 @@ async function getKomikById(req, res) {
         }
         res.status(200).json(komik);
     } catch (error) {
-        console.error('Error retrieving komik:', error.massage);
+        console.error('Error retrieving komik:', error.message);
         res.status(500).json({ error: 'An error occurred while retrieving komik.' });
     }
 }
@@ -30,7 +30,7 @@ async function createKomik(req, res) {
         const newKomik = await db.Komik.create({ title, description, author });
         res.status(201).json(newKomik);
     } catch (error) {
-        console.error('Error creating komik:', error.massage);
+        console.error('Error creating komik:', error.message);
         res.status(500).json({ error: 'An error occurred while creating komik.' });
     }
 }
@@ -49,7 +49,7 @@ async function updateKomik(req, res) {
         await komik.save();
         res.status(200).json(komik);
     } catch (error) {
-        console.error('Error updating komik:', error.massage);
+        console.error('Error updating komik:', error.message);
         res.status(500).json({ error: 'An error occurred while updating komik.' });
     }
 }
@@ -64,7 +64,7 @@ async function deleteKomik(req, res) {
         await komik.destroy();
         res.status(200).json({ message: 'Komik deleted successfully.' });
     } catch (error) {
-        console.error('Error deleting komik:', error.massage);
+        console.error('Error deleting komik:', error.message);
         res.status(500).json({ error: 'An error occurred while deleting komik.' });
     }
 }
